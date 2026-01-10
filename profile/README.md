@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/pollinations/pollinations/main/shared/assets/logo-text.svg" alt="pollinations.ai" width="400"/>
+  <img src="https://raw.githubusercontent.com/pollinations/pollinations/main/assets/logo-text.svg" alt="pollinations.ai" width="400"/>
   
   <h3>Open-source AI for people who make things.</h3>
   
