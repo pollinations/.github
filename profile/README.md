@@ -70,8 +70,8 @@ curl 'https://gen.pollinations.ai/v1/chat/completions' \
 ### Integrations
 
 - **[@pollinations/sdk](https://www.npmjs.com/package/@pollinations_ai/sdk)** — SDK kit for easy frontend integration
-- **[@pollinations/model-context-protocol](https://www.npmjs.com/package/@pollinations_ai/model-context-protocol)** — MCP server for AI assistants
-- **[@pollinations/oh-my-pollicode](https://www.npmjs.com/package/@pollinations_ai/oh-my-pollicode)** — OpenCode Router with Pollinations AI Models for optimal multi-agent workflows.
+- **[@pollinations/mcp](https://www.npmjs.com/package/@pollinations_ai/mcp)** — MCP server for AI assistants
+- **[@pollinations/ompc](https://www.npmjs.com/package/@pollinations_ai/ompc)** — OpenCode Router with Pollinations AI Models for optimal multi-agent workflows.
 
 ## 🏗️ Architecture
 
