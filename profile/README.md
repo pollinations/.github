@@ -1,139 +1,306 @@
-<div align="center">
-  <img src="https://avatars.githubusercontent.com/u/86964862?s=200&v=4" alt="pollinations.ai" width="100"/>
-  
-  <h3>Open-source AI for people who make things.</h3>
-  
-  <p>A community-driven platform where developers, artists, and tinkerers build together.<br/>No gatekeeping — just good tools and good people.</p>
+ <div align="center">
+  <img src="https://avatars.githubusercontent.com/u/86964862?s=200&v=4" alt="Pollinations.ai" width="100"/>
 
-[![Stars](https://img.shields.io/github/stars/pollinations/pollinations?style=flat-square&logo=github&label=Stars)](https://github.com/pollinations/pollinations)
-[![License](https://img.shields.io/github/license/pollinations/pollinations?style=flat-square)](https://github.com/pollinations/pollinations/blob/main/LICENSE)
-[![Discord](https://img.shields.io/discord/885844321461485618?style=flat-square&logo=discord&label=Discord&color=5865F2)](https://discord.gg/pollinations-ai-885844321461485618)
-[![npm](https://img.shields.io/npm/v/@pollinations_ai/sdk?style=flat-square&logo=npm&label=Pollinations%20SDK)](https://www.npmjs.com/package/@pollinations_ai/sdk)
-![Readme Badge](https://img.shields.io/badge/pollinations.ai-ORIGINALS-8a2be2?style=flat-square&logo=data:image/svg+xml,%3Csvg%20xmlns%3D%22http://www.w3.org/2000svg%22%20viewBox%3D%220%200%20124%20124%22%3E%3Ccircle%20cx%3D%2262%22%20cy%3D%2262%22%20r%3D%2262%22%20fill%3D%22%23ffffff%22/%3E%3C/svg%3E&logoColor=white&labelColor=6a0dad)
+  # Pollinations.ai
 
-[Website](https://pollinations.ai) · [Dashboard](https://enter.pollinations.ai) · [API Docs](https://github.com/pollinations/pollinations/blob/main/APIDOCS.md) · [Discord](https://discord.gg/pollinations-ai-885844321461485618)
+  **Open-source AI for people who make things.**
 
+  A community-driven platform for building with generative AI. One unified API for text, images, video, audio, 3D, and embeddings.
+
+  [![Stars](https://img.shields.io/github/stars/pollinations/pollinations?style=flat-square&logo=github&label=Stars)](https://github.com/pollinations/pollinations)
+  [![License](https://img.shields.io/github/license/pollinations/pollinations?style=flat-square)](LICENSE)
+  [![Discord](https://img.shields.io/discord/885844321461485618?style=flat-square&logo=discord&label=Discord&color=5865F2)](https://discord.gg/k9F7SyTgqn)
+
+  [Website](https://pollinations.ai) · [Playground](https://pollinations.ai/play) · [Dashboard & API Keys](https://enter.pollinations.ai) · [API Docs](https://gen.pollinations.ai/docs) · [Discord](https://discord.gg/k9F7SyTgqn)
 </div>
 
 ---
 
-## 🚀 Quick Start
+## 🚀 One API. Many possibilities.
 
-> Get your API key at [enter.pollinations.ai](https://enter.pollinations.ai)
+[Pollinations.ai](https://pollinations.ai) is an open-source generative AI platform that gives developers and creators access to a wide range of AI models through a unified API.
+
+Instead of integrating every model provider separately, use one API to generate content, build applications, and connect AI tools.
+
+- 📝 **Text & reasoning** — chat, vision, tool calling, and structured outputs.
+- 🖼️ **Image generation & editing** — create images from prompts and transform existing images.
+- 🎬 **Video generation** — generate videos from text and supported image inputs.
+- 🔊 **Audio** — text-to-speech and speech-to-text.
+- 🧊 **3D generation** — create 3D assets with supported models.
+- 🔢 **Embeddings** — power semantic search, retrieval, and similarity matching.
+- 🎙️ **Real-time AI** — connect to supported real-time conversational models.
+- 🤖 **Managed agents** — turn prompts, models, and tools into reusable AI agents.
+- 🧰 **Developer tools** — use the CLI, SDK, MCP servers, and OpenAI-compatible APIs.
+- 🌱 **Community ecosystem** — publish models, build applications, and participate in Quests.
+
+Model availability, pricing, and capabilities change over time. Explore the [live model catalog](https://gen.pollinations.ai/models) for current information.
+
+## ⚡ Quick start
+
+### 1. Get an API key
+
+Create an account and generate a key at [enter.pollinations.ai](https://enter.pollinations.ai/keys).
+
+Set your key as an environment variable:
 
 ```bash
+export POLLINATIONS_API_KEY="YOUR_API_KEY"
+```
+
+Keep secret keys private. For browser-based applications, use an appropriately restricted app key or [Connect User Wallets](https://gen.pollinations.ai/docs#tag/connect-user-wallets).
+
+### 2. Generate an image
+
+```bash
+curl -H "Authorization: Bearer $POLLINATIONS_API_KEY" \
+  "https://gen.pollinations.ai/image/a%20cat%20in%20space" \
+  -o image.jpg
+```
+
+### 3. Generate text
+
+Use the OpenAI-compatible Chat Completions API:
+
+```bash
+curl https://gen.pollinations.ai/v1/chat/completions \
+  -H "Authorization: Bearer $POLLINATIONS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "openai/gpt-5.4-nano",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Explain quantum computing in two sentences."
+      }
+    ]
+  }'
+```
+
+The model shown is an example. Check the [live model catalog](https://gen.pollinations.ai/models) for current availability and access requirements.
+
+### 4. Explore more
+
+- [Interactive Playground](https://pollinations.ai/play)
+- [Full API Documentation](https://gen.pollinations.ai/docs)
+- [Available Models](https://gen.pollinations.ai/models)
+- [Dashboard, Keys & Credits](https://enter.pollinations.ai)
+
+## 🧩 A unified API
+
+The API is hosted at `https://gen.pollinations.ai`.
+
+| Capability | Endpoint | Description |
+|---|---|---|
+| Text | `POST /v1/chat/completions` | OpenAI-compatible chat completions |
+| Text & agents | `POST /v1/responses` | Responses API |
+| Anthropic-compatible text | `POST /v1/messages` | Messages API |
+| Images | `GET /image/{prompt}` | Generate an image from a prompt |
+| Image generation | `POST /v1/images/generations` | OpenAI-compatible image generation |
+| Image editing | `POST /v1/images/edits` | Edit supported image inputs |
+| Video | `GET /video/{prompt}` | Generate video |
+| Speech | `POST /v1/audio/speech` | Generate audio from text |
+| Transcription | `POST /v1/audio/transcriptions` | Transcribe audio |
+| Embeddings | `POST /v1/embeddings` | Create embeddings |
+| 3D | `GET /3d/{prompt}` | Generate 3D assets |
+| Model discovery | `GET /v1/models` | Discover available models |
+| Real-time | `/v1/realtime` | Supported real-time connections |
+
+See the [API reference](https://gen.pollinations.ai/docs) for request formats, parameters, supported models, and endpoint-specific requirements.
+
+## 💻 Use your existing tools
+
+### OpenAI SDK compatibility
+
+Pollinations supports OpenAI-compatible integrations. In many applications, you can switch providers by changing the base URL and API key.
+
+**Python**
+
+```python
+from openai import OpenAI
+import os
+
+client = OpenAI(
+    base_url="https://gen.pollinations.ai/v1",
+    api_key=os.environ["POLLINATIONS_API_KEY"],
+)
+
+response = client.chat.completions.create(
+    model="openai/gpt-5.4-nano",
+    messages=[
+        {"role": "user", "content": "Hello, Pollinations!"}
+    ],
+)
+
+print(response.choices[0].message.content)
+```
+
+**JavaScript / Node.js**
+
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://gen.pollinations.ai/v1",
+  apiKey: process.env.POLLINATIONS_API_KEY,
+});
+
+const response = await client.chat.completions.create({
+  model: "openai/gpt-5.4-nano",
+  messages: [
+    { role: "user", content: "Hello, Pollinations!" },
+  ],
+});
+
+console.log(response.choices[0].message.content);
+```
+
+Compatibility depends on the endpoint and capabilities supported by the selected model.
+
+### Pollinations CLI
+
+Generate content, discover models, and manage your account from the terminal.
+
+```bash
+# Run a command without a global installation
+npx @pollinations/cli gen text \
+  "Explain quantum tunneling in one sentence"
+
 # Generate an image
-curl 'https://gen.pollinations.ai/image/a%20cat?key=YOUR_API_KEY' -o image.jpg
+npx @pollinations/cli gen image \
+  "A cozy futuristic city at night" \
+  --output city.png
 
-# Generate text
-curl 'https://gen.pollinations.ai/text/Hello?key=YOUR_API_KEY'
+# Install the CLI globally
+npm install -g @pollinations/cli
 
-# OpenAI-compatible endpoint
-curl 'https://gen.pollinations.ai/v1/chat/completions' \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Content-Type: application/json' \
-  -d '{"model": "openai", "messages": [{"role": "user", "content": "Hello"}]}'
+# Authenticate and discover models
+polli auth login
+polli models
+polli docs
 ```
 
-## ✨ What We Offer
+See the [CLI documentation](https://gen.pollinations.ai/docs#tag/cli) and [CLI source code](packages/polli-cli).
 
-| Feature                 | Description                                        |
-| ----------------------- | -------------------------------------------------- |
-| 🖼️ **Image Generation** | Flux, GPT Image, Seedream, Kontext, and more       |
-| 🎬 **Video Generation** | Seedance, Veo — text-to-video (alpha)              |
-| 💬 **Text Generation**  | GPT-5, Claude, Gemini, DeepSeek, Grok, Perplexity  |
-| 🎵 **Audio**            | Text-to-speech with multiple voices                |
-| 🌱 **Pollen Tiers**     | Earn daily credits by contributing — tiers in beta |
-| 🤖 **MCP Server**       | AI assistants like Claude can generate directly    |
-| 💯 **100% Open Source** | Code, roadmap, conversations — all public          |
+### SDK
 
-## 📊 Community Stats
+Use the [Pollinations SDK](packages/sdk/README.md) for supported JavaScript, browser, and React integrations.
 
-<!-- STATS:START -->
+### MCP servers
 
-| Metric           | Count                                                                                                          |
-| ---------------- | -------------------------------------------------------------------------------------------------------------- |
-| ⭐ Stars         | ![Stars](https://img.shields.io/github/stars/pollinations/pollinations?style=flat-square&label=)               |
-| 🍴 Forks         | ![Forks](https://img.shields.io/github/forks/pollinations/pollinations?style=flat-square&label=)               |
-| 👥 Contributors  | ![Contributors](https://img.shields.io/github/contributors/pollinations/pollinations?style=flat-square&label=) |
-| 🔄 Open PRs      | ![PRs](https://img.shields.io/github/issues-pr/pollinations/pollinations?style=flat-square&label=)             |
-| 📦 npm Downloads | ![npm](https://img.shields.io/npm/dm/@pollinations/react?style=flat-square&label=)                             |
+Connect AI assistants and other Model Context Protocol clients to Pollinations-hosted tools.
 
-<!-- STATS:END -->
+**Pollinations MCP endpoint:**
 
-## 📦 Ecosystem
-
-### Core Platform
-
-- **[pollinations](https://github.com/pollinations/pollinations)** — Main repo: API backends, web frontend, React hooks, MCP server
-
-### Integrations
-
-- **[@pollinations_ai/sdk](https://www.npmjs.com/package/@pollinations_ai/sdk)** — SDK kit for easy frontend integration
-- **[@pollinations_ai/mcp](https://www.npmjs.com/package/@pollinations_ai/mcp)** — MCP server for AI assistants
-- **[@pollinations_ai/cli](https://www.npmjs.com/package/@pollinations_ai/cli)** — The Pollinations CLI — for humans, AI agents, and everything in between.
-
-## 🏗️ Architecture
-
-```mermaid
-flowchart TB
-    A["🌸 gen.pollinations.ai<br/><i>Unified API Gateway</i>"]
-
-      A --> I["🖼️ Image<br/>(<i>Flux, GPT Image, Seedream</i>)"]
-      A --> V["🎬 Video<br/>(<i>Seedance, Veo</i>)"]
-      A --> T["💬 Text<br/>(<i>GPT-5, Claude, Gemini, Grok</i>)"]
-      A --> AU["🎵 Audio<br/>(<i>TTS, STT, Voices</i>)"]
-
-      style A fill:#fce7f3,stroke:#be185d,color:#831843,stroke-width:2px
-      style I fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
-      style V fill:#fef3c7,stroke:#f59e0b,color:#92400e
-      style T fill:#d1fae5,stroke:#10b981,color:#065f46
-      style AU fill:#ede9fe,stroke:#8b5cf6,color:#5b21b6
-      linkStyle default stroke:#94a3b8,stroke-width:3px
+```text
+https://gen.pollinations.ai/mcp/pollinations
 ```
 
-## 🤝 Get Involved
+Configure your MCP client to use the endpoint and provide your API key using the authentication method supported by that client.
 
-- 💬 **[Discord](https://discord.gg/pollinations-ai-885844321461485618)** — Chat with the community
-- 🐛 **[Issues](https://github.com/pollinations/pollinations/issues)** — Report bugs or request features
-- 📱 **[Submit Your App](https://github.com/pollinations/pollinations/issues/new?template=tier-app-submission.yml)** — Share what you've built
+Explore the [MCP documentation](https://gen.pollinations.ai/docs#tag/mcp-servers).
 
-## 💚 Support Us
+## 🔐 Authentication & usage
 
-- ☕ **[Ko-fi](https://ko-fi.com/pollinationsai)** — One-time donations
-- 💖 **[GitHub Sponsors](https://github.com/sponsors/pollinations)** — Monthly support
-- 🌐 **[Open Collective](https://opencollective.com/pollinationsai)** — Transparent funding
+Manage your API keys and account through the [Pollinations dashboard](https://enter.pollinations.ai).
 
-## 📣 Stay Connected
+| Key type | Typical use |
+|---|---|
+| App key (`pk_`) | Browser, mobile, and other public-client integrations with configured permissions and budgets |
+| Secret key (`sk_`) | Trusted server-side applications |
 
-<p align="center">
-  <a href="https://twitter.com/pollinations_ai">𝕏 Twitter</a> · 
-  <a href="https://instagram.com/pollinations_ai">Instagram</a> · 
-  <a href="https://www.linkedin.com/company/pollinations-ai">LinkedIn</a> · 
-  <a href="https://facebook.com/pollinations">Facebook</a> · 
-  <a href="https://www.reddit.com/r/pollinations_ai/">Reddit</a> · 
-  <a href="https://www.youtube.com/c/pollinations">YouTube</a>
-</p>
+**Security guidelines**
 
-## 🌍 Supported By
+- Never expose a secret key in frontend code, public repositories, or client-side bundles.
+- Give each application only the permissions it needs.
+- Configure model access and budgets for app keys.
+- For user-funded applications, consider [Connect User Wallets](https://gen.pollinations.ai/docs#tag/connect-user-wallets), which allows users to authorize spending their own Pollen.
 
-<p align="center">
-  <a href="https://www.perplexity.ai/">Perplexity AI</a> · 
-  <a href="https://aws.amazon.com/">AWS</a> · 
-  <a href="https://io.net/">io.net</a> · 
-  <a href="https://www.byteplus.com/">BytePlus</a> · 
-  <a href="https://cloud.google.com/">Google Cloud</a> · 
-  <a href="https://www.nvidia.com/en-us/deep-learning-ai/startups/">NVIDIA Inception</a> · 
-  <a href="https://azure.microsoft.com/">Azure</a> · 
-  <a href="https://www.cloudflare.com/">Cloudflare</a> · 
-  <a href="https://www.scaleway.com/">Scaleway</a> · 
-  <a href="https://modal.com/">Modal</a> · 
-  <a href="https://api.navy/">NavyAI</a> · 
-  <a href="https://nebius.com/">Nebius</a>
-</p>
+Pollinations uses Pollen credits for usage-based billing. Check the dashboard and live model catalog for current prices, limits, and access requirements rather than relying on static pricing examples.
+
+## 🌍 Build with the community
+
+### Community models
+
+Connect supported model endpoints to Pollinations and use them through the unified API.
+
+- Register and test your own model.
+- Keep supported models private or publish them when eligible.
+- Configure compatible fallback models where supported.
+- Discover models and inspect health information.
+
+Start with the [Publish a Model guide](https://gen.pollinations.ai/docs#tag/publish-a-model) and the [live model catalog](https://gen.pollinations.ai/v1/models).
+
+### Managed agents
+
+Create reusable agents using a system prompt, a base model, and supported tools.
+
+Manage agents through the dashboard or CLI, and use their model IDs through the normal API.
+
+See the [Publish an Agent guide](https://gen.pollinations.ai/docs#tag/publish-an-agent).
+
+### Pollen Quests
+
+Participate in community Quests and earn Pollen for eligible contributions and activities.
+
+Explore current opportunities through the [dashboard](https://enter.pollinations.ai).
+
+### Build an app
+
+Have you created something with Pollinations? Share it with the community and submit it for consideration in the [app directory](https://pollinations.ai/apps).
+
+## 🏗️ Project structure
+
+This repository contains the platform's applications, APIs, packages, and supporting infrastructure.
+
+| Directory | Purpose |
+|---|---|
+| [`pollinations.ai/`](pollinations.ai/) | Main website and frontend |
+| [`gen.pollinations.ai/`](gen.pollinations.ai/) | Unified generation API and routing |
+| [`enter.pollinations.ai/`](enter.pollinations.ai/) | Authentication, keys, and billing |
+| [`shared/`](shared/) | Shared libraries, registries, and utilities |
+| [`apps/`](apps/) | Community and platform applications |
+| [`packages/`](packages/) | SDKs, CLI, MCP, and other packages |
+| [`media.pollinations.ai/`](media.pollinations.ai/) | Media upload and delivery services |
+| [`operations/`](operations/) | Infrastructure, operations, and monitoring |
+
+For development setup, dependencies, and contribution instructions, see [DEVELOP.md](DEVELOP.md).
+
+## 🤝 Contributing
+
+Pollinations is built with the community. Contributions, bug reports, ideas, and applications are welcome.
+
+- **Code:** Browse the repository and open a [pull request](https://github.com/pollinations/pollinations/pulls).
+- **Bugs and ideas:** [Open an issue](https://github.com/pollinations/pollinations/issues).
+- **Build an app:** Share your project through the [app submission process](https://github.com/pollinations/pollinations/issues/new?template=app-submission.yml).
+- **Community:** Join our [Discord server](https://discord.gg/k9F7SyTgqn).
+- **Development:** Read [DEVELOP.md](DEVELOP.md) before making changes.
+
+## 💚 Support the project
+
+The best way to support Pollinations is to build with it, share what you make, and contribute to the ecosystem.
+
+You can also explore the project's [GitHub Sponsors](https://github.com/sponsors/pollinations) page.
+
+## 📣 Stay connected
+
+- [Website](https://pollinations.ai)
+- [Dashboard & News](https://enter.pollinations.ai)
+- [API Documentation](https://gen.pollinations.ai/docs)
+- [Model Monitor](https://model-monitor.pollinations.ai)
+- [GitHub](https://github.com/pollinations/pollinations)
+- [Discord](https://discord.gg/k9F7SyTgqn)
+- [X](https://x.com/pollinations_ai)
+- [Instagram](https://instagram.com/pollinations_ai)
+- [LinkedIn](https://www.linkedin.com/company/pollinations-ai)
+- [Reddit](https://www.reddit.com/r/pollinations_ai/)
+- [YouTube](https://www.youtube.com/c/pollinations)
+
+## 📜 License
+
+Pollinations is open-source software licensed under the [MIT License](LICENSE).
 
 ---
 
 <div align="center">
-  <sub>Made with ❤️ in Berlin · <a href="https://github.com/pollinations/pollinations/blob/main/LICENSE">MIT License</a></sub>
+  Made with ❤️ by the Pollinations community.
 </div>
